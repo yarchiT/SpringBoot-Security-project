@@ -25,7 +25,7 @@ public class User {
 
 
     @NotEmpty(message = "*Please provide your password")
-    @Transient
+    @NotNull
     private String password;
 
     @Column(name = "first_name")
@@ -48,6 +48,17 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "role_id", nullable = false)})
     @JsonIgnore
     private Set<Role> roles;
+
+    public User(){
+
+    }
+
+    public User(String email, String firstName, String lastName, String password){
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
