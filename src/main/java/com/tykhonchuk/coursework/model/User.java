@@ -1,13 +1,16 @@
 package com.tykhonchuk.coursework.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
+@Table(name="kma_user")
 public class User {
 
     @Id
@@ -16,11 +19,11 @@ public class User {
     private int id;
 
     @Email(message = "*Please provide a valid Email")
+    @NotNull
     @NotEmpty(message = "*Please provide an email")
     private String email;
 
 
-    @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
     @Transient
     private String password;
@@ -40,7 +43,10 @@ public class User {
      * In our case - user has role
      */
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_role", joinColumns ={
+            @JoinColumn(name = "user_id", nullable=false)},
+            inverseJoinColumns = { @JoinColumn(name = "role_id", nullable = false)})
+    @JsonIgnore
     private Set<Role> roles;
 
     public int getId() {
