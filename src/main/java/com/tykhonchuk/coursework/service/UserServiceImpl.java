@@ -1,18 +1,12 @@
 package com.tykhonchuk.coursework.service;
 
-import com.tykhonchuk.coursework.model.Role;
 import com.tykhonchuk.coursework.model.User;
 import com.tykhonchuk.coursework.repository.RoleRepository;
 import com.tykhonchuk.coursework.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,8 +17,6 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
