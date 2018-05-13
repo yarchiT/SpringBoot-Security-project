@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // If a user try to access a resource without having enough permissions
         http.exceptionHandling().accessDeniedPage("/login");
 
-/*
+
         http.
                 authorizeRequests()
                 .antMatchers("/").permitAll()
@@ -75,7 +75,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");*/
+                .accessDeniedPage("/access-denied");
     }
 
     @Override

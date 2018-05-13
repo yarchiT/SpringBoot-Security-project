@@ -38,10 +38,6 @@ public class User {
 
     private int active;
 
-    /**
-     * Join Table is specified inside the lead entity of the relationship
-     * In our case - user has role
-     */
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns ={
             @JoinColumn(name = "user_id", nullable=false)},
